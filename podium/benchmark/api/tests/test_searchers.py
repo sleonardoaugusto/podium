@@ -8,13 +8,12 @@ from podium.benchmark.api.searchers import SellerSearcher
 
 class SellerSearcherTest(TestCase):
     def setUp(self) -> None:
-        self.searcher = SellerSearcher(APIClient, 'MLA420040', 'sold_quantity_desc')
+        self.searcher = SellerSearcher(APIClient)
 
     def test_init(self):
         self.assertTrue(self.searcher)
         self.assertIsInstance(APIClient(), self.searcher.client)
         self.assertEqual(self.searcher.category, 'MLA420040')
-        self.assertEqual(self.searcher.sort, 'sold_quantity_desc')
         self.assertEqual(self.searcher.limit, 10)
 
     @patch('podium.benchmark.api.client.APIClient.get_item_list')
@@ -26,7 +25,7 @@ class SellerSearcherTest(TestCase):
         mock.assert_called_once_with(
             {
                 'category': self.searcher.category,
-                'sort': self.searcher.sort,
+                'sort': self.searcher.SORT,
                 'offset': 1,
             }
         )

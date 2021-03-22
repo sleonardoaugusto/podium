@@ -21,3 +21,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py test
 ```
+
+### Resources
+
+```
+http://localhost:8000/best-sellers/?category=somecategory&limit=15
+```

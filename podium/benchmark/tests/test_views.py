@@ -7,13 +7,13 @@ from podium.benchmark.api import Seller
 
 class SellersViewTest(TestCase):
     def setUp(self) -> None:
-        self.resp = self.get(Seller(pk=0, nickname=''))
+        self.resp = self.get()
 
-    @patch('podium.benchmark.views.SellerSearcher.run')
-    def get(self, item, mock):
-        mock.return_value = [item]
-        resp = self.client.get('/best-sellers/')
-        return resp
+    def get(self, q='', item=Seller(pk=0, nickname='')):
+        with patch('podium.benchmark.views.SellerSearcher.run') as mock:
+            mock.return_value = [item]
+            resp = self.client.get(f'/best-sellers/{q}')
+            return resp
 
     def test_get(self):
         """GET /best-sellers/ must return status code 200"""
@@ -29,5 +29,5 @@ class SellersViewTest(TestCase):
 
     def test_html(self):
         item = Seller(pk=0, nickname='Pombinha Guerreira Martins')
-        resp = self.get(item)
+        resp = self.get(item=item)
         self.assertContains(resp, item.nickname)
