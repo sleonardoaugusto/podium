@@ -30,7 +30,6 @@ class SellerSearcher:
             for s in sellers:
                 seller = self.parser.parse(s['seller'])
                 i += 1
-                print(i, seller)
 
                 if self.must_add(best_sellers, seller.pk):
                     best_sellers.append(seller)
