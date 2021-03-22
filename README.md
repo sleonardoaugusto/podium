@@ -1,5 +1,7 @@
 # Podium
 
+[![Tests](https://github.com/sleonardoaugusto/podium/actions/workflows/ci-cd.yaml/badge.svg)](https://github.com/sleonardoaugusto/podium/actions/workflows/ci-cd.yaml)
+
 A mercado libre ranking system.
 
 ## How develop?
