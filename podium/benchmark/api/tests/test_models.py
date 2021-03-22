@@ -1,4 +1,4 @@
-from unittest import TestCase
+from django.test import TestCase
 
 from podium.benchmark.api import Seller, Item
 

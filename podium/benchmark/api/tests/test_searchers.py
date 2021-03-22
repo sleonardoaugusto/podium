@@ -1,5 +1,6 @@
-from unittest import TestCase
 from unittest.mock import patch
+
+from django.test import TestCase
 
 from podium.benchmark.api import APIClient, Seller
 from podium.benchmark.api.searchers import SellerSearcher
