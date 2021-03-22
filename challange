@@ -1,0 +1,21 @@
+Nos gustaría ver una app sencilla hecha con Django que nos permita hacer lo siguiente:
+
+1. Que haya dos páginas:
+1.a. Una página que muestre el listado con los apodos de los diez usuarios con mayor cantidad de unidades vendidas en la categoría “Fundas Cargadoras” (https://api.mercadolibre.com/categories/MLA420040)
+1.b. Una página que muestre el listado con título, precio y link de las diez publicaciones más caras de esa misma categoría
+2. Opcional pero muy deseable: botón o link para iniciar sesión con una cuenta de Mercado Libre (oAuth), y para cerrar sesión
+
+La documentación que necesitás está en:
+* http://developers.mercadolibre.com/
+* https://github.com/mercadolibre/python-sdk
+
+Algunas consideraciones:
+
+La app tiene que traer y mostrar datos “live” usando la API de Mercado Libre, no es necesario usar una base de datos
+Esa categoría tiene cientos de publicaciones, tené en cuenta el parámetro “limit” para obtener de a 50 publicaciones
+El atributo de una publicación que indica la cantidad de unidades vendidas es “sold_quantity”
+El código debe contar con los test unitarios correspondientes, utilizando mocks cuando corresponda hacer una llamada a la API de Mercadolibre. Se espera que el coverage sea superior al 80% y se apreciará si la cobertura de código es aún mayor.
+
+Toda funcionalidad que quieras agregarle nunca está de más y vamos a tenerla en cuenta 😊
+
+La finalidad de esta prueba es poder ver de forma tangible tus skills como developer. Una vez que tengas finalizada la app por favor subila a un repo privado de GitHub o Bitbucket así la analizamos. 

@@ -1,0 +1,25 @@
+<div class="flex">
+  <h1 class="flex-center">Top Best Sellers</h1>
+  {% for seller in sellers %}
+    <div class="flex-center">
+      <span class="seller-place">{{ forloop.counter }} -</span>
+      <span>{{ seller.nickname }}</span>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+    .flex {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flex-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .seller-place {
+        margin-right: 0.3rem;
+    }
+</style>
