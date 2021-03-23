@@ -3,7 +3,6 @@ import vcr
 from django.test import TestCase
 
 from podium.benchmark.api import APIClient
-from podium.benchmark.api.tests.utils import responses
 
 
 class APIClientTest(TestCase):
@@ -38,6 +37,21 @@ class APIClientTest(TestCase):
         'podium/benchmark/api/tests/fixtures/vcr_cassettes/item_list.yaml'
     )
     def test_get_item_list(self):
-        items = responses.item_list(self.query_params)
+        items = self.item_list(self.query_params)
         resp = self.api_client.get_item_list(self.query_params)
         self.assertEqual(resp, items)
+
+    @staticmethod
+    @vcr.use_cassette(
+        'podium/benchmark/api/tests/fixtures/vcr_cassettes/get_items.yaml'
+    )
+    def item_list(query_params=None):
+        if query_params is None:
+            query_params = {}
+
+        url = 'https://api.mercadolibre.com/sites/MLA/search'
+        params = {'category': 'MLA420040', 'sort': 'sold_quantity_desc', 'offset': 1}
+        q = {**params, **query_params}
+        resp = requests.get(url, params=q)
+        items = resp.json()['results']
+        return items
