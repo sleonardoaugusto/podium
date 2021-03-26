@@ -2,7 +2,7 @@ from unittest.mock import patch, call, MagicMock
 
 from django.test import TestCase
 
-from podium.benchmark.api import APIClient, Seller, SellerParser, Searcher
+from podium.benchmark.api import APIClient, Seller, SellerParser, Searcher, Item
 from podium.benchmark.api.parsers import ItemParser
 
 
@@ -54,7 +54,7 @@ class SearcherSellerTest(TestCase):
 
         mock_get.side_effect = [[{'seller': {}}] * per_page] * pages
         mock_add.return_value = True
-        mock_parse.return_value = Seller(pk=0, nickname='')
+        mock_parse.return_value = Seller(0, '')
 
         sellers = self.searcher.run()
 
@@ -77,7 +77,7 @@ class SearcherItemTest(TestCase):
 
         mock_get.side_effect = [[{'seller': {}}] * per_page] * pages
         mock_add.return_value = True
-        mock_parse.return_value = Seller(pk=0, nickname='')
+        mock_parse.return_value = Item(0, '', 0.0, '')
 
         sellers = self.searcher.run()
 
