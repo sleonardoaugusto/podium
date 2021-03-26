@@ -26,4 +26,5 @@ python manage.py test
 
 ```
 http://localhost:8000/best-sellers/?category=MLA420040&limit=15
+http://localhost:8000/expensive-items/?category=MLA420040&limit=15
 ```
