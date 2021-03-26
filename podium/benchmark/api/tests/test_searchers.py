@@ -32,10 +32,12 @@ class SearcherTest(TestCase):
 
     def test_must_not_add(self):
         sellers = [Seller(pk=1, nickname='')]
+
         self.assertFalse(self.searcher.must_add(sellers, pk=1))
 
     def test_must_add(self):
         sellers = [Seller(pk=1, nickname='')]
+
         self.assertTrue(self.searcher.must_add(sellers, pk=2))
 
 

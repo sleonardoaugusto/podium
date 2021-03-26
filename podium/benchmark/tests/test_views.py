@@ -23,6 +23,7 @@ class SellersViewTest(TestCase):
     def test_html(self):
         item = Seller(pk=0, nickname='Pombinha Guerreira Martins')
         resp = self.get(item=item)
+
         self.assertContains(resp, json.dumps(item.serialized))
 
 

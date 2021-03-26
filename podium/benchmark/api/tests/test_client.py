@@ -28,10 +28,9 @@ class APIClientTest(TestCase):
 
     def test_build_url(self):
         url = self.api_client.build_url(self.query_params)
-        self.assertEqual(
-            url,
-            'https://api.mercadolibre.com/sites/MLA/search?category=MLA420040&sort=sold_quantity_desc&offset=1',
-        )
+        expect = 'https://api.mercadolibre.com/sites/MLA/search?category=MLA420040&sort=sold_quantity_desc&offset=1'
+
+        self.assertEqual(url, expect)
 
     @vcr.use_cassette(
         'podium/benchmark/api/tests/fixtures/vcr_cassettes/item_list.yaml'
@@ -39,6 +38,7 @@ class APIClientTest(TestCase):
     def test_get_item_list(self):
         items = self.item_list(self.query_params)
         resp = self.api_client.get_item_list(self.query_params)
+
         self.assertEqual(resp, items)
 
     @staticmethod
