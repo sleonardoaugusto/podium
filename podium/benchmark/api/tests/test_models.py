@@ -14,9 +14,10 @@ class SellerTest(TestCase):
 
 class ItemTest(TestCase):
     def setUp(self) -> None:
-        self.item = Item('Funda Power Case Soul', 4499, 'https://fundapower.com')
+        self.item = Item(1, 'Funda Power Case Soul', 4499, 'https://fundapower.com')
 
     def test_init(self):
+        self.assertEqual(self.item.pk, 1)
         self.assertEqual(self.item.title, 'Funda Power Case Soul')
         self.assertEqual(self.item.price, 4499)
         self.assertEqual(self.item.link, 'https://fundapower.com')

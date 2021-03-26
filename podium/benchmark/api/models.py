@@ -5,7 +5,8 @@ class Seller:
 
 
 class Item:
-    def __init__(self, title: str, price: int, link: str):
+    def __init__(self, pk: int, title: str, price: float, link: str):
+        self.pk = pk
         self.title = title
         self.price = price
         self.link = link

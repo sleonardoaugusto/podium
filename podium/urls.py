@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from podium.benchmark.views import best_sellers
+from podium.benchmark.views import best_sellers, expensive_items
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('best-sellers/', best_sellers),
+    path('expensive-items/', expensive_items),
 ]

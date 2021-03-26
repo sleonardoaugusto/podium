@@ -23,11 +23,16 @@ class SellerParser:
 class ItemParser:
     def parse(self, obj):
         i = Item(
+            pk=self.extract_id(obj),
             title=self.extract_title(obj),
             price=self.extract_price(obj),
             link=self.extract_link(obj),
         )
         return i
+
+    @staticmethod
+    def extract_id(obj):
+        return obj['id']
 
     @staticmethod
     def extract_title(obj):

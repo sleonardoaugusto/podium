@@ -38,6 +38,7 @@ class ItemParserTest(TestCase):
 
     def test_parse(self):
         item = {
+            'id': 1,
             'title': 'my title',
             'price': 0,
             'permalink': 'http://perfil.mercadolibre.com.ar/ITEM',
