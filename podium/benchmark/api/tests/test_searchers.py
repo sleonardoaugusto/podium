@@ -60,6 +60,9 @@ class SearcherSellerTest(TestCase):
 
         mock_parse.assert_has_calls([call({})] * self.searcher.limit)
         self.assertEqual(len(sellers), 10)
+        for seller in sellers:
+            with self.subTest():
+                self.assertIsInstance(seller, Seller)
 
 
 class SearcherItemTest(TestCase):
@@ -79,7 +82,10 @@ class SearcherItemTest(TestCase):
         mock_add.return_value = True
         mock_parse.return_value = Item(0, '', 0.0, '')
 
-        sellers = self.searcher.run()
+        items = self.searcher.run()
 
         mock_parse.assert_has_calls([call({'seller': {}})] * self.searcher.limit)
-        self.assertEqual(len(sellers), 10)
+        self.assertEqual(len(items), 10)
+        for item in items:
+            with self.subTest():
+                self.assertIsInstance(item, Item)
