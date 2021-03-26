@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import json
+
+from django.http import HttpResponse
 
 from podium.benchmark.api import APIClient, SellerParser
 from podium.benchmark.api.parsers import ItemParser
@@ -26,7 +28,9 @@ def best_sellers(request):
     parser = SellerParser()
     items = Searcher(api_client, parser, **params).run()
 
-    return render(request, 'benchmark/sellers.html', {'sellers': items})
+    return HttpResponse(
+        json.dumps([item.serialized for item in items]), content_type='application/json'
+    )
 
 
 def expensive_items(request):
@@ -35,4 +39,6 @@ def expensive_items(request):
     parser = ItemParser()
     items = Searcher(api_client, parser, **params).run()
 
-    return render(request, 'benchmark/items.html', {'items': items})
+    return HttpResponse(
+        json.dumps([item.serialized for item in items]), content_type='application/json'
+    )

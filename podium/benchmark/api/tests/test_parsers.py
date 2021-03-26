@@ -18,7 +18,7 @@ class SellerParserTest(TestCase):
                 'permalink': 'http://perfil.mercadolibre.com.ar/SUPER_SHOP',
             }
         }
-        parsed = self.parser.parse(item)
+        parsed = self.parser.parse(item['seller'])
 
         values = (
             (parsed.pk, 1),

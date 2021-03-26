@@ -1,4 +1,4 @@
-from unittest.mock import patch, call
+from unittest.mock import patch, call, MagicMock
 
 from django.test import TestCase
 
@@ -8,16 +8,13 @@ from podium.benchmark.api.parsers import ItemParser
 
 class SearcherTest(TestCase):
     def setUp(self) -> None:
-        self.searcher = Searcher(APIClient(), SellerParser())
+        self.searcher = Searcher(APIClient(), MagicMock())
 
     def test_init(self):
         self.assertTrue(self.searcher)
         self.assertIsInstance(self.searcher.client, APIClient)
         self.assertEqual(self.searcher.category, 'MLA420040')
         self.assertEqual(self.searcher.limit, 10)
-
-    def test_init_sort(self):
-        self.assertEqual(self.searcher.sort, Searcher.SELLER_SORT)
 
     @patch('podium.benchmark.api.client.APIClient.get_item_list')
     def test_get_items(self, mock):
@@ -40,6 +37,14 @@ class SearcherTest(TestCase):
     def test_must_add(self):
         sellers = [Seller(pk=1, nickname='')]
         self.assertTrue(self.searcher.must_add(sellers, pk=2))
+
+
+class SearcherSellerTest(TestCase):
+    def setUp(self) -> None:
+        self.searcher = Searcher(APIClient(), SellerParser())
+
+    def test_init(self):
+        self.assertEqual(self.searcher.sort, Searcher.SELLER_SORT)
 
     @patch('podium.benchmark.api.searchers.Searcher.get_items')
     @patch('podium.benchmark.api.searchers.Searcher.must_add')
