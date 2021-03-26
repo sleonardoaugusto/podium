@@ -30,7 +30,7 @@ class SellerSearcher:
             sellers = self.get_best_sellers(offset)
 
             for s in sellers:
-                seller = self.parser.parse(s['seller'])
+                seller = self.parser.parse(s)
 
                 if self.must_add(best_sellers, seller.pk):
                     best_sellers.append(seller)

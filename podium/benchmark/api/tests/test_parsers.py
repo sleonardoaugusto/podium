@@ -12,10 +12,18 @@ class SellerParserTest(TestCase):
         self.assertTrue(self.parser)
 
     def test_parse(self):
-        item = {'id': 1, 'permalink': 'http://perfil.mercadolibre.com.ar/SUPER_SHOP'}
+        item = {
+            'seller': {
+                'id': 1,
+                'permalink': 'http://perfil.mercadolibre.com.ar/SUPER_SHOP',
+            }
+        }
         parsed = self.parser.parse(item)
 
-        values = ((parsed.pk, 1), (parsed.nickname, 'SUPER_SHOP'))
+        values = (
+            (parsed.pk, 1),
+            (parsed.nickname, 'SUPER_SHOP'),
+        )
         for value, expect in values:
             with self.subTest():
                 self.assertEqual(value, expect)

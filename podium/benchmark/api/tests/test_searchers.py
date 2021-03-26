@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, call
 
 from django.test import TestCase
 
@@ -50,4 +50,5 @@ class SellerSearcherTest(TestCase):
 
         sellers = self.searcher.run()
 
+        mock_parse.assert_has_calls([call({'seller': {}})] * self.searcher.limit)
         self.assertEqual(len(sellers), 10)
