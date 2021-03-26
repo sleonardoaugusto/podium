@@ -43,10 +43,5 @@ class ItemViewTest(TestCase):
     def test_html(self):
         item = Item(pk=1, title='Some title', price=999.99, link='http://mylink.com')
         resp = self.get(item=item)
-        expect = {
-            'title': 'Some title',
-            'price': 999.99,
-            'link': 'http://mylink.com',
-        }
 
-        self.assertContains(resp, json.dumps(expect))
+        self.assertContains(resp, json.dumps(item.serialized))
