@@ -62,7 +62,7 @@ class SearcherSellerTest(TestCase):
         self.assertEqual(len(sellers), 10)
 
 
-class SearcherItemParser(TestCase):
+class SearcherItemTest(TestCase):
     def setUp(self) -> None:
         self.searcher = Searcher(APIClient(), ItemParser())
 
