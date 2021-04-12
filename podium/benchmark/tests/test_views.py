@@ -20,7 +20,7 @@ class SellersViewTest(TestCase):
         """GET /best-sellers/ must return status code 200"""
         self.assertEqual(self.resp.status_code, 200)
 
-    def test_html(self):
+    def test_content(self):
         item = Seller(pk=0, nickname='Pombinha Guerreira Martins')
         resp = self.get(item=item)
 
@@ -41,7 +41,7 @@ class ItemViewTest(TestCase):
         """GET /expensive-items/ must return status code 200"""
         self.assertEqual(self.resp.status_code, 200)
 
-    def test_html(self):
+    def test_content(self):
         item = Item(pk=1, title='Some title', price=999.99, link='http://mylink.com')
         resp = self.get(item=item)
 
