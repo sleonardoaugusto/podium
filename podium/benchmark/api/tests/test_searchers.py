@@ -1,4 +1,4 @@
-from unittest.mock import patch, call, MagicMock
+from unittest.mock import patch, MagicMock
 
 from django.test import TestCase
 
@@ -60,11 +60,7 @@ class SearcherSellerTest(TestCase):
 
         sellers = self.searcher.run()
 
-        mock_parse.assert_has_calls([call({})] * self.searcher.limit)
         self.assertEqual(len(sellers), 10)
-        for seller in sellers:
-            with self.subTest():
-                self.assertIsInstance(seller, Seller)
 
 
 class SearcherItemTest(TestCase):
@@ -86,8 +82,4 @@ class SearcherItemTest(TestCase):
 
         items = self.searcher.run()
 
-        mock_parse.assert_has_calls([call({'seller': {}})] * self.searcher.limit)
         self.assertEqual(len(items), 10)
-        for item in items:
-            with self.subTest():
-                self.assertIsInstance(item, Item)
