@@ -15,8 +15,7 @@ class SellerParser:
 
     @staticmethod
     def extract_nickname(data):
-        nickname = data['permalink'].split('http://perfil.mercadolibre.com.ar/')[1]
-        return nickname.replace('+', ' ')
+        return data['nickname']
 
 
 class ItemParser:
